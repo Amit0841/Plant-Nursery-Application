@@ -7,7 +7,6 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 
 @Embeddable
-
 public class Address {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private int AddId ;
