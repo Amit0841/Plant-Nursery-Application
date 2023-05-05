@@ -56,6 +56,7 @@ public class Ui {
 		 String state=sc.next() ;
 			System.out.println("Enter pincode");
 		 int pincode =sc.nextInt();
+		 
 		 Address a=new Address(houseNo,city,state,pincode);
 		 
 		Signup s=new Signup(FirstNmae,LastNmae,password,email,a);
@@ -70,12 +71,21 @@ public class Ui {
 
 	private static void userLogin(Scanner sc) {
 		
-		
+	
 	}
 
 	private static void adminLogin(Scanner sc) {
-		
-		
+		String Id ="admin";
+		String Password ="Admin";
+		System.out.println("Enter Admin Id");
+		String id =sc.next();
+		System.out.println("Enter password");
+		String password =sc.next();
+		if(Id.equals(id) && password.equals(Password)) {
+			System.out.println("Welcome admin");
+		}else {
+			System.out.println("Some thing went wrong");
+		}
 	}
 
 }
