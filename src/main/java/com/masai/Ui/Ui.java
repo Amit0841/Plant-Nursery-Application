@@ -29,7 +29,7 @@ public class Ui {
 		case 3:
 			userSignUp(sc);
 			break;
-		case 4:
+		case 0:
 			System.out.println("Exit");
 			break;
 		}
@@ -38,6 +38,7 @@ public class Ui {
 	}
 
 	private static void userSignUp(Scanner sc) {
+		 
 		System.out.println("Enter first name");
 		 String FirstNmae=sc.next();
 		System.out.println("Enter last name");
@@ -57,11 +58,11 @@ public class Ui {
 			System.out.println("Enter pincode");
 		 int pincode =sc.nextInt();
 		 
-		 Address a=new Address(houseNo,city,state,pincode);
 		 
-		Signup s=new Signup(FirstNmae,LastNmae,password,email,a);
 		InterfaceUSE se=new userDb();
-	boolean g=	se.addCustomer(s);
+		
+	boolean g=	se.addCustomer(houseNo,city,state,pincode,FirstNmae,LastNmae,password,email);
+	
 	if(g) {
 		System.out.println("Done");
 	}else {
@@ -71,10 +72,18 @@ public class Ui {
 
 	private static void userLogin(Scanner sc) {
 		
-	
+		System.out.println("Enter Email");
+		String email=sc.next();
+		
+		System.out.println("Enter Password");
+		String password=sc.next();
+		
+		InterfaceUSE se=new userDb();
+		se.login(email,password);
 	}
 
 	private static void adminLogin(Scanner sc) {
+		
 		String Id ="admin";
 		String Password ="Admin";
 		System.out.println("Enter Admin Id");
@@ -83,6 +92,34 @@ public class Ui {
 		String password =sc.next();
 		if(Id.equals(id) && password.equals(Password)) {
 			System.out.println("Welcome admin");
+			int c=0;
+			do {
+				System.out.println("1. Add seed");
+				System.out.println("2. update seed");
+				System.out.println("3. Add plant");
+				System.out.println("3. update plant ");
+				System.out.println("0. Exit ");
+				System.out.println("Enter");
+				c=sc.nextInt();
+					switch(c) {
+				case 1:
+				AdminUi.addSeed(sc);
+					break;
+				case 2:
+				AdminUi.updateSeed(sc);
+					break;
+				case 3:
+					AdminUi.addPlant(sc);
+					break;
+				case 4:
+					AdminUi.updatePlant(sc);
+					break;
+				case 0:
+					System.out.println("Exit");
+					break;
+				}
+				}while(c!=0);
+			
 		}else {
 			System.out.println("Some thing went wrong");
 		}

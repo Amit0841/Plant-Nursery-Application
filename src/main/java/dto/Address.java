@@ -8,8 +8,6 @@ import jakarta.persistence.InheritanceType;
 
 @Embeddable
 public class Address {
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private int AddId ;
 private String houseNo ;
 private String city ;
 private String state ;
@@ -25,12 +23,7 @@ public Address(String houseNo, String city, String state, int pincode) {
 	this.state = state;
 	this.pincode = pincode;
 }
-public int getAddId() {
-	return AddId;
-}
-public void setAddId(int addId) {
-	AddId = addId;
-}
+
 public String getHouseNo() {
 	return houseNo;
 }
@@ -57,7 +50,7 @@ public void setPincode(int pincode) {
 }
 @Override
 public String toString() {
-	return "Address [AddId=" + AddId + ", houseNo=" + houseNo + ", city=" + city + ", state=" + state + ", pincode="
+	return "Address [ houseNo=" + houseNo + ", city=" + city + ", state=" + state + ", pincode="
 			+ pincode + "]";
 }
  
