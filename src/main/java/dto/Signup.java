@@ -1,15 +1,16 @@
 package dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Signup {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,31 +20,34 @@ private String LastNmae;
 private String Email;
 private String Password;
 @Embedded
-private Address address;
+@ElementCollection(fetch = FetchType.EAGER)
+private List<Address> list =new ArrayList();
+
 public int getId() {
 	return id;
 }
 public void setId(int id) {
 	this.id = id;
 }
-public Address getAddress() {
-	return address;
-}
-public void setAddress(Address address) {
-	this.address = address;
-}
+
 public Signup() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public Signup(String firstNmae, String lastNmae, String password, String Email,Address address) {
+
+public Signup(String firstNmae, String lastNmae, String email, String password, List<dto.Address> list) {
 	super();
-	this.FirstNmae = firstNmae;
-	this.LastNmae = lastNmae;
-	this.Password = password;
-	this.Email = Email;
-	this.address = address;
-	
+	FirstNmae = firstNmae;
+	LastNmae = lastNmae;
+	Email = email;
+	Password = password;
+	this.list = list;
+}
+public List<Address> getList() {
+	return list;
+}
+public void setList(List<Address> list) {
+	this.list = list;
 }
 public String getFirstNmae() {
 	return FirstNmae;
@@ -64,10 +68,16 @@ public String getEmail() {
 public void setEmail(String email) {
 	Email = email;
 }
+public String getPassword() {
+	return Password;
+}
+public void setPassword(String password) {
+	Password = password;
+}
 @Override
 public String toString() {
 	return "Signup [id=" + id + ", FirstNmae=" + FirstNmae + ", LastNmae=" + LastNmae + ", Email=" + Email
-			+ ", address=" + address + "]";
+			+ ", address=" + "]";
 }
 
 
