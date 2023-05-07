@@ -1,6 +1,8 @@
 package dao;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import dto.Address;
@@ -37,7 +39,7 @@ public class userDb implements InterfaceUSE{
 
 
 	@Override
-	public void login(String email, String password) {
+	public boolean login(String email, String password) {
 		EntityManager em= connectionDB.makeConnection();
 		
 		String query="select e.Password from Signup e where e.Email = :email";
@@ -51,9 +53,10 @@ public class userDb implements InterfaceUSE{
 
 		if(pass.equals(password)) {
 			System.out.println("login success");
-			
+			return true;
 		}else {
 			System.out.println("user not there");
+			return false;
 		}
 	}
 	@Override
@@ -78,7 +81,6 @@ public class userDb implements InterfaceUSE{
     	em.close();
 		return true;
 	}
-
 
 	@Override
 	public void updateSeed(int id,Scanner sc) {
@@ -135,6 +137,39 @@ public class userDb implements InterfaceUSE{
 		em.merge(seed);
 		em.close();
 		
+	}
+
+
+	@Override
+	public boolean viewSeed() {
+		EntityManager em= connectionDB.makeConnection();
+        String query="select e from Seed e ";		
+		Query que= em.createQuery(query);
+		List <Seed> list=que.getResultList();
+		if(list.size()!=0) {
+			list.forEach(System.out::println);
+			return true;
+		}else {
+			System.out.println("Empty");
+			return false;
+		}
+		
+	}
+
+
+	@Override
+	public boolean viewPlants() {
+		EntityManager em= connectionDB.makeConnection();
+		String query="select e from Plant e ";		
+				Query que= em.createQuery(query);
+				List <Plant> list=que.getResultList();
+				if(list.size()!=0) {
+					list.forEach(System.out::println);
+					return true;
+				}else {
+					System.out.println("Empty");
+					return false;
+				}
 	}
 
 	
