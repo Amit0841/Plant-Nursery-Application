@@ -64,7 +64,7 @@ public class Ui {
 	boolean g=	se.addCustomer(houseNo,city,state,pincode,FirstNmae,LastNmae,password,email);
 	
 	if(g) {
-		System.out.println("Done");
+		System.out.println("Done");	
 	}else {
 		System.out.println("Not Done");
 	}
@@ -79,7 +79,32 @@ public class Ui {
 		String password=sc.next();
 		
 		InterfaceUSE se=new userDb();
-		se.login(email,password);
+		boolean a=se.login(email,password);
+		if(a) {
+			
+			int c=0;
+			do {
+				System.out.println("1. view seed");
+				System.out.println("2. view plant");
+				System.out.println("0. Exit ");
+				System.out.println("Enter");
+				c=sc.nextInt();
+					switch(c) {
+				case 1:
+					UserUi.viewSeed(sc);
+					break;
+				case 2:
+					UserUi.viewPlants();
+					break;
+				case 0:
+					System.out.println("Exit");
+					sc.close();
+					break;
+				}
+				}while(c!=0);
+		}else {
+			
+		}
 	}
 
 	private static void adminLogin(Scanner sc) {
