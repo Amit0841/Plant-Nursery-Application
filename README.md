@@ -1,4 +1,5 @@
 # 	Online-Plant-Nursery-Application
+This is an Online Plant Nursery Application that allows customers to view and purchase plants, seeds, and planters. It also provides administrative functionalities for managing plants, seeds, planters, and customers.
 <div align="center">
   
 <h1 align="center">Nurseryr Plant(Plant Nursery Application)</h1>  
